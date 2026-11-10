@@ -1,14 +1,29 @@
-# FeaturePilot 🚀
+<p align="center">
+  <img src="assets/banner.svg" alt="Switchboard Banner" width="100%">
+</p>
 
-[![CI](https://github.com/Gaurav28-tech/feature-pilot/actions/workflows/ci.yml/badge.svg)](https://github.com/Gaurav28-tech/feature-pilot)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Python: 3.9+](https://img.shields.io/badge/Python-3.9+-brightgreen.svg)]()
+<p align="center">
+  <a href="https://github.com/Gaurav28-tech/switchboard/actions"><img src="https://github.com/Gaurav28-tech/switchboard/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License"></a>
+  <img src="https://img.shields.io/badge/Python-3.9+-brightgreen.svg" alt="Python Version">
+  <img src="https://img.shields.io/badge/Rollouts-Deterministic%20Hash-pink" alt="Rollouts">
+</p>
 
-**FeaturePilot** is a deterministic feature flagging and progressive canary rollout engine engineered for high-availability SaaS and distributed systems. It features stable user-bucketing algorithms, rule-based audience targeting, instant kill-switches, and local evaluation with sub-millisecond execution.
+<p align="center">
+  <b>Switchboard</b> is a deterministic feature flagging and progressive canary rollout engine engineered for high-availability SaaS and distributed systems. It features stable user-bucketing algorithms, rule-based audience targeting, instant kill-switches, and local evaluation with sub-millisecond execution.
+</p>
 
 ---
 
-## 🚀 Key Features
+## ⚡ Live Terminal Preview
+
+<p align="center">
+  <img src="assets/demo.gif" alt="Switchboard Terminal Demo" width="100%">
+</p>
+
+---
+
+## 🚀 Key Capabilities
 
 - **Deterministic Hash Bucketing**: Employs cryptographic SHA-256 bucketing ensuring a user consistently stays in the same rollout bucket (0–100%) across all servers without session affinity.
 - **Audience Targeting Rules**: Match user attributes by equality, set inclusion (`in`), regex patterns, or numerical ranges.
@@ -20,22 +35,9 @@
 
 ## 🏗️ Architecture
 
-```
-User Context: { id: "usr_481", plan: "enterprise", region: "eu-west" }
-                     |
-                     v
-+--------------------------------------------------------+
-| FeaturePilot Evaluation Engine                         |
-|                                                        |
-|   1. Master Kill-Switch Check                          |
-|   2. Whitelist / Forced Override Match                 |
-|   3. Audience Targeting Rules (plan == 'enterprise')   |
-|   4. Deterministic Hash Bucketing (hash % 100 < 25%)   |
-+--------------------------------------------------------+
-                     |
-                     v
-Result: True (Feature Enabled) / False (Fallback)
-```
+<p align="center">
+  <img src="assets/architecture.svg" alt="Switchboard Architecture" width="100%">
+</p>
 
 ---
 
@@ -44,8 +46,8 @@ Result: True (Feature Enabled) / False (Fallback)
 ### Installation
 
 ```bash
-git clone https://github.com/Gaurav28-tech/feature-pilot.git
-cd feature-pilot
+git clone https://github.com/Gaurav28-tech/switchboard.git
+cd switchboard
 ```
 
 ### Basic Usage
@@ -56,7 +58,7 @@ from pilot.models import FeatureFlag, TargetingRule
 
 client = FeaturePilot()
 
-# Define a 20% canary rollout flag for beta search
+# Define 20% canary rollout flag for beta search
 flag = FeatureFlag(
     key="ai-search-v2",
     description="Next-gen semantic vector search",
@@ -77,7 +79,7 @@ is_enabled = client.is_enabled(
 print(f"Feature Enabled: {is_enabled}")
 ```
 
-### Running Tests
+### Running Test Suite
 
 ```bash
 python -m unittest discover -s tests -p "test_*.py"
